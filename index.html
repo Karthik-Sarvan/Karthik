@@ -351,31 +351,55 @@
             <p class="section-subtitle">How can you communicate?</p>
             <h6 class="section-title mb-5">Contact Me</h6>
             <!-- contact form -->
-            <form action="" class="contact-form col-md-10 col-lg-8 m-auto">
+            <!-- <form  class="contact-form col-md-10 col-lg-8 m-auto" id="contact-form" name="submit-to-google-sheet">
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <input type="text" size="50" class="form-control" placeholder="Your Name" required>                 
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="email" class="form-control" placeholder="Enter Email"requried>                 
+                        <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
                     </div>
                     <div class="form-group col-sm-12">
-                        <textarea name="comment" id="comment" rows="6"   class="form-control" placeholder="Write Something"></textarea>
+                        <textarea name="message" id="comment" rows="6" class="form-control" placeholder="Write Something"></textarea>
                     </div>
                     <div class="form-group col-sm-12 mt-3">
-                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">                  
+                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">
                     </div>
-                </div>  
-            </form><!-- end of contact form -->
+                    <span id="msg"></span>
+                </div>
+            </form> -->
+            <div class="text-left flex justify-center align-items-center">
+                <script src="https://sheetdb.io/s/f/msazi6a68upp0.js"></script>
+            </div>
+            <!-- end of contact form -->
+            <!-- <script>
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbyu4xrtt-ziF7WOi2WhC18fOlITfIT-NWKHtcNRS8Jb5tfFol5R3y3IEOApBiVB1m3l/exec'
+                const form = document.forms['submit-to-google-sheet']
+                const msg = document.getElementById('msg');
+                form.addEventListener('submit', e => {
+                  e.preventDefault()
+                  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                    .then(response => {
+                        msg.innerHTML = "Thank you for your Message."
+                        setTimeout(function(){
+                            msg.innerHTML = " "
+                        }, 5000)
+                        form.reset();
+                        console.log(form);
+                    }
+                     )
+                    .catch(error => console.error('Error!', error.message))
+                })
+              </script> -->
         </div><!-- end of container -->
     </section><!-- end of contact section -->
 
     <!-- App Script -->
-    <script>
+    <!-- <script>
         document.getElementById('contact-form').addEventListener('submit', function(event) {
             event.preventDefault();
     
-            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // Replace with your Google Apps Script URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyu4xrtt-ziF7WOi2WhC18fOlITfIT-NWKHtcNRS8Jb5tfFol5R3y3IEOApBiVB1m3l/exec'; // Replace with your Google Apps Script URL
             const formData = new FormData(document.getElementById('contact-form'));
     
             fetch(scriptURL, { method: 'POST', body: JSON.stringify({
@@ -387,7 +411,7 @@
             .then(data => alert('Success!', data))
             .catch(error => alert('Error!', error));
         });
-    </script>
+    </script> -->
 
     <!-- footer -->
     <div class="container">
