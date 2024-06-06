@@ -24,15 +24,15 @@
                 <li class="item">
                     <a class="link" href="#about">About</a>
                 </li>
-                <li class="item">
+                <!-- <li class="item">
                     <a class="link" href="#portfolio">Portfolio</a>
-                </li>
+                </li> -->
                 <li class="item">
-                    <a class="link" href="#testmonial">Testmonial</a>
+                    <a class="link" href="#testmonial">Skills</a>
                 </li>
-                <li class="item">
+                <!-- <li class="item">
                     <a class="link" href="#blog">Blog</a>
-                </li>
+                </li> -->
                 <li class="item">
                     <a class="link" href="#contact">Contact</a>
                 </li>
@@ -69,7 +69,7 @@
             <!-- about wrapper -->
             <div class="about">
                 <div class="about-img-holder">
-                    <img src="assets/imgs/man.png" class="about-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    <img src="assets/imgs/karthik.png" class="about-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
                 </div>
                 <div class="about-caption">
                     <p class="section-subtitle">Who Am I ?</p>
@@ -77,7 +77,9 @@
                     <p>
                         Hi, I'm Karthik, an Electronics and Communication Engineering student with a keen interest in computers, software, and embedded systems. Eager to delve into the intersection of technology and innovation, I am committed to learning and contributing to these dynamic fields.              
                     </p>
-                    <button class="btn-rounded btn btn-outline-primary mt-4">Download CV</button>
+                    <a href="Karthik-Resume.pdf" download="Karthik-Resume.pdf" >
+                        <button class="btn-rounded btn btn-outline-primary mt-4">Download CV</button>
+                    </a>
                 </div>              
             </div><!-- end of about wrapper -->
         </div><!-- end of container -->
@@ -232,11 +234,10 @@
         
 
     <!-- portfolio section -->
-    <section class="section" id="portfolio">
+    <!-- <section class="section" id="portfolio">
         <div class="container text-center">
             <p class="section-subtitle">What I Did ?</p>
             <h6 class="section-title mb-6">Portfolio</h6>
-            <!-- row -->
             <div class="row">
                 <div class="col-md-4">
                     <a  class="portfolio-card">
@@ -271,9 +272,9 @@
                         </span>                     
                     </a>
                 </div>
-            </div><!-- end of row -->
-        </div><!-- end of container -->
-    </section> <!-- end of portfolio section -->
+            </div>
+        </div>
+    </section> -->
 
 
     <!-- section -->
@@ -295,12 +296,10 @@
 
 
     <!-- blog section -->
-    <section class="section" id="blog">
-        <!-- container -->
+    <!-- <section class="section" id="blog">
         <div class="container text-center">
             <p class="section-subtitle">Recent Posts?</p>
             <h6 class="section-title mb-6">Blog</h6>
-            <!-- blog-wrapper -->
             <div class="blog-card">
                 <div class="blog-card-header">
                     <img src="assets/imgs/img-1.jpg" class="blog-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
@@ -320,9 +319,8 @@
 
                     <a href="#" class="blog-card-link">Read more <i class="ti-angle-double-right"></i></a>
                 </div>
-            </div><!-- end of blog wrapper -->
+            </div>
 
-            <!-- blog-wrapper -->
             <div class="blog-card">
                 <div class="blog-card-header">
                     <img src="assets/imgs/img-2.jpg" class="blog-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
@@ -340,10 +338,13 @@
 
                     <a href="#" class="blog-card-link">Read more <i class="ti-angle-double-right"></i></a>
                 </div>
-            </div><!-- end of blog wrapper -->
-
-        </div><!-- end of container -->
-    </section><!-- end of blog section -->
+            </div>
+            <div class="form-group col-sm-12 mt-3">
+                <a href="/blogs.html" class="btn btn-outline-primary rounded">  View More </a>               
+            </div>
+        </div>
+    </section> -->
+    <!-- end of blog section -->
 
     <!-- contact section -->
     <section class="section" id="contact">
@@ -369,6 +370,25 @@
             </form><!-- end of contact form -->
         </div><!-- end of container -->
     </section><!-- end of contact section -->
+
+    <!-- App Script -->
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // Replace with your Google Apps Script URL
+            const formData = new FormData(document.getElementById('contact-form'));
+    
+            fetch(scriptURL, { method: 'POST', body: JSON.stringify({
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message')
+            })})
+            .then(response => response.json())
+            .then(data => alert('Success!', data))
+            .catch(error => alert('Error!', error));
+        });
+    </script>
 
     <!-- footer -->
     <div class="container">
