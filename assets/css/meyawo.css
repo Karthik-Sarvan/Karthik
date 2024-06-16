@@ -12204,6 +12204,10 @@ pre .code {
     margin: auto;
     margin-bottom: 20px;
   }
+  #dataForm{
+    width: 85% !important;
+  }
+  
 }
 
 /* sections */
@@ -12248,4 +12252,27 @@ pre .code {
 sheetdb-form{
   margin-left: auto;
   margin-right: auto;
+}
+
+#dataForm{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#name, #mail, #message{
+  border: 2px solid #a0a1a2;
+  outline: none;
+  color: rgb(25, 25, 25);
+  border-radius: 5px;
+  padding: 5px;
+}
+#form-submit{
+  border-radius: 5px;
+  padding: 5px;
+  font-size: large;
+  width: 5em;
 }
