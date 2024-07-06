@@ -12276,3 +12276,9 @@ sheetdb-form{
   font-size: large;
   width: 5em;
 }
+
+.justify-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
