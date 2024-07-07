@@ -4,27 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ask Luna</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-          theme: {
-            extend: {
-              colors: {
-                clifford: '#da373d',
-              }
-            }
-          }
-        }
-      </script>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Meyawo main styles -->
+	<link rel="stylesheet" href="assets/css/meyawo.css">
 </head>
 <body>
-    <h1>Ask Luna - Your Personal Assistant</h1>
-    <form id="questionForm">
-        <label for="question">Ask a question:</label>
-        <input type="text" id="question" name="question" required>
-        <button type="submit">Ask Luna</button>
-    </form>
-    <div id="response" class="response" style="display: none;"></div>
+    <!-- main AI -->
+    <header id="home" class="header">
+        <div class="overlay"></div>
+            <form id="questionForm" class="container-ai">
+                <input type="text" id="question" name="question" placeholder="Ask Luna" class="input-ai" required>
+                <button type="submit" class="button-ai">⪢</button>
+            </form>          
+        <section id="response" class="response">
+            Ask Luna
+        </section>
+    </header><!-- end of page header -->
+        
 
     <script>
         document.getElementById('questionForm').addEventListener('submit', async function(event) {
@@ -68,5 +65,47 @@
             }
         });
     </script>
+    <style>
+        .container-ai{
+            position: absolute;
+            bottom: 30px;
+            width: 95% !important;
+            border: 1px solid rgb(85, 84, 84);
+            display: flex; 
+            height: 8%;
+            border-radius: 20px;
+            justify-content: center;
+            align-items: center;
+            padding-left: 10px;
+            padding-right: 0px;
+            background: #d7d7d7;
+        }
+        .input-ai{
+            outline: none;
+            border: 0px solid;
+            height: 100%;
+            width: 100%;
+            background: transparent;
+            margin-left: 0;
+        }
+        .button-ai{
+            border: none;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            background-color: rgb(215 215 215);
+            margin-right: 2px;
+        }
+        #response{
+            width: 80%;
+            text-align: center;
+            font-size: 20px;
+            color: black;
+            overflow: hidden;
+            overflow-y: scroll;
+            height: 50%;
+            position: absolute;
+        }
+    </style>
 </body>
 </html>
