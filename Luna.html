@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Luna</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #18181b;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .response {
+            margin-top: 20px;
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Ask Luna - Your Personal Assistant</h1>
+    <form id="questionForm">
+        <label for="question">Ask a question:</label>
+        <input type="text" id="question" name="question" required>
+        <button type="submit">Ask Luna</button>
+    </form>
+    <div id="response" class="response" style="display: none;"></div>
+
+    <script>
+        const synth = window.speechSynthesis;
+        let voices = [];
+
+        // Fetch voices
+        function populateVoices() {
+            voices = synth.getVoices();
+        }
+
+        // Speak function
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.voice = voices[0]; // Select the first voice
+            synth.speak(utterance);
+        }
+
+        // Wait for voices to be loaded before use
+        populateVoices();
+        if (synth.onvoiceschanged !== undefined) {
+            synth.onvoiceschanged = populateVoices;
+        }
+
+        document.getElementById('questionForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const question = document.getElementById('question').value.trim();
+            if (!question) return;
+
+            try {
+                const response = await fetch('https://luna-backend-gold.vercel.app/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ question })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+
+                const data = await response.json();
+                showResponse(data.answer);
+                speak(data.answer); // Speak out the answer
+            } catch (error) {
+                console.error('Error occurred:', error);
+                showResponse('Sorry, an error occurred.');
+            }
+        });
+
+        function showResponse(answer) {
+            const responseElement = document.getElementById('response');
+            responseElement.textContent = `Luna says: ${answer}`;
+            responseElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
