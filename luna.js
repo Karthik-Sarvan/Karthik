@@ -7,7 +7,7 @@ document.getElementById('questionForm').addEventListener('submit', async functio
     const model = 'llama3-8b-8192';
 
     const requestData = {
-        messages: [{ role: 'user', content: "your name is Luna,  karthik has created you karthik, Keep in mind your answer should be simple and short only answer to the question that is asked"  + question }],
+        messages: [{ role: 'user', content: "your name is Luna and your are Created by karthik. only answer to the qustion what is asked. "  + question }],
         model: model
     };
 
