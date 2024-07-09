@@ -4,7 +4,7 @@ document.getElementById('questionForm').addEventListener('submit', async functio
     const question = document.getElementById('question').value;
     const apiKey = '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'; // Replace with your actual API key
     const apiUrl = 'https://api.groq.com/openai/v1/chat/completions';
-    const model = 'llama3-70b-8192';
+    const model = 'llama3-8b-8192';
 
     const requestData = {
         messages: [{ role: 'user', content: "your name is Luna and your are Created by karthik. only answer to the qustion what is asked. "  + question }],
