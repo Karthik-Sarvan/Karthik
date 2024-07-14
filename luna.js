@@ -7,7 +7,7 @@ document.getElementById('questionForm').addEventListener('submit', async functio
     const model = 'llama3-8b-8192';
 
     const requestData = {
-        messages: [{ role: 'user', content: "your name is Luna created by Karthik. "  + question }],
+        messages: [{ role: 'user', content: "your name is Luna created by Karthik. greet with Namaskaram. "  + question }],
         model: model
     };
 
