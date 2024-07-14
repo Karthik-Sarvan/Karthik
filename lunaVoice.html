@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Recording, Transcription, and Speech</title>
+</head>
+<body>
+    <h1>Audio Recording, Transcription, and Speech</h1>
+    
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="audioFile">Choose an audio file:</label>
+        <input type="file" id="audioFile" name="audio" accept="audio/*">
+        <button type="button" onclick="uploadAudio()">Upload and Transcribe</button>
+    </form>
+    
+    <div id="response" style="margin-top: 20px;">
+        <strong>Server Response:</strong>
+        <p id="responseText"></p>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button onclick="startRecording()">Start Recording</button>
+        <button onclick="stopRecording()" disabled>Stop Recording</button>
+    </div>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+
+        async function startRecording() {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.ondataavailable = event => {
+                audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+                const audioFile = new File([audioBlob], "recording.mp3", { type: 'audio/mp3' });
+
+                const formData = new FormData();
+                formData.append('audio', audioFile);
+
+                uploadAudio(formData);
+            };
+
+            mediaRecorder.start();
+
+            document.querySelector('button[onclick="startRecording()"]').disabled = true;
+            document.querySelector('button[onclick="stopRecording()"]').disabled = false;
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+
+            document.querySelector('button[onclick="startRecording()"]').disabled = false;
+            document.querySelector('button[onclick="stopRecording()"]').disabled = true;
+        }
+
+        async function uploadAudio(formData) {
+            try {
+                const response = await fetch('https://luna-voice.vercel.app/transcribe', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+                const responseText = result.response;
+                
+                // Display the response
+                document.getElementById('responseText').innerText = responseText;
+                
+                // Speak out the response
+                speakText(responseText);
+            } catch (error) {
+                document.getElementById('responseText').innerText = `Error: ${error.message}`;
+            } finally {
+                // Clear audio chunks and reset form after upload
+                audioChunks = [];
+                document.getElementById('audioFile').value = '';
+            }
+        }   
+
+        function speakText(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
