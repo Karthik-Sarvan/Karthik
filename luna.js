@@ -38,3 +38,4 @@ document.getElementById('questionForm').addEventListener('submit', async functio
         responseElement.style.display = 'block';
     }
 });
+

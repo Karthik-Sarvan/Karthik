@@ -12300,3 +12300,14 @@ sheetdb-form{
 ::-webkit-scrollbar-corner {
   background: #000;
 }
+
+.record-button{
+  height: 40px;
+  width: 40px;
+  margin-left: 5px;
+}
+.stop-button{
+  height: 40px;
+  width: 40px;
+  margin-left: 5px;
+}
