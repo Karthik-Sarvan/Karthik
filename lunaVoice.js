@@ -1,6 +1,8 @@
 let mediaRecorder;
 let audioChunks = [];
 
+
+
 async function startRecording() {
     document.querySelector(".start").style.display = 'none'
     document.querySelector(".stop").style.display = 'flex';
@@ -23,9 +25,7 @@ async function startRecording() {
 
     mediaRecorder.start();
 
-    const recordButton = document.querySelector('.record-button');
-    const stopButton = document.querySelector('.stop-button');
-
+    
     recordButton.disabled = true;
     recordButton.classList.add('active');
     stopButton.disabled = false;
