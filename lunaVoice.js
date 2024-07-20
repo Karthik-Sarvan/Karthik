@@ -2,6 +2,8 @@ let mediaRecorder;
 let audioChunks = [];
 
 async function startRecording() {
+    document.querySelector(".start").style.display = 'none'
+    document.querySelector(".stop").style.display = 'flex';
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     mediaRecorder = new MediaRecorder(stream);
 
@@ -27,9 +29,13 @@ async function startRecording() {
     recordButton.disabled = true;
     recordButton.classList.add('active');
     stopButton.disabled = false;
+    
+   
 }
 
 function stopRecording() {
+    document.querySelector(".start").style.display = 'flex'
+    document.querySelector(".stop").style.display = 'none';
     mediaRecorder.stop();
 
     const recordButton = document.querySelector('.record-button');
@@ -38,6 +44,7 @@ function stopRecording() {
     recordButton.disabled = false;
     recordButton.classList.remove('active');
     stopButton.disabled = true;
+    
 }
 
 async function uploadAudio(formData) {

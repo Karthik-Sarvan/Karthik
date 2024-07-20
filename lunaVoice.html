@@ -19,17 +19,28 @@
         </section>
         <div class="input-container container-ai" id="questionForm" >
             <!-- <input type="file" id="audioFile" name="audio" accept="audio/*"> -->
-            <div>
-                <img class="record-button" src="assets/imgs/record_icon.png" type="button" onclick="startRecording()">
-                <label>Start Recording</label>
+            <div class="start">
+                <img class="record-button" src="assets/imgs/voice.svg" type="button" onclick="startRecording()">
+                <!-- <label>Start Recording</label> -->
             </div>
-            <div>
-                <img class="record-button" class="stop-button" type="button" onclick="stopRecording()" disabled src="assets/imgs/record_icon.png" ">
-                <label>stop Recording</label>
+            <div class="stop">
+                <img class="record-button" class="stop-button" type="button" onclick="stopRecording()" disabled src="assets/imgs/voice.svg" ">
+                <!-- <label>stop Recording</label> -->
             </div>
         </div>
     </div>
     <style>
+      .stop{
+        display: none;
+        background-color: white;
+        padding: 5px;
+        border-radius: 50%;
+        height: 3em;
+        width: 3em;
+        justify-content: center;
+        align-items: center;
+        border: 20px solid red;
+      }
         .container-ai{
             position: absolute;
             bottom: 30px;
@@ -120,6 +131,7 @@
 }
 
     </style>
+
     <script src="lunaVoice.js"></script>
 </body>
 </html>
