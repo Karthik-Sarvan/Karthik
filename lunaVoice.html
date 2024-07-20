@@ -14,7 +14,7 @@
             <h1 class="header-title AI-title">
                 <!-- <span class="up">This is Luna! <br></span>
                 <p class="header-subtitle ">Developed By Karthik</p> -->
-                <p class="responseText overlay" id="response"></p>
+                <p  id="response"></p>
             </h1>
         </section>
         <div class="input-container container-ai" id="questionForm" >
@@ -58,18 +58,67 @@
             background-color: rgb(215 215 215);
             margin-right: 2px;
         }
-        #response{
-            width: 100%;
-            text-align: center;
-            font-size: 20px;
-            color: rgb(31, 30, 30);
-            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-            height: 100%;
-            overflow-y: scroll;
-            position: absolute;
-            padding: 20%;
-            padding-top: 50%;
-        }
+        #response {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    color: rgb(31, 30, 30);
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    height: 100%;
+    overflow-y: scroll;
+    position: absolute;
+    padding-top: 10%;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    #response {
+        padding-top: 50%;
+    }
+}
+
+        /* Define keyframes for pulsating animation */
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* General button styling */
+.button {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Styling for active (recording) state */
+.record-button.active {
+  animation: pulsate 1s infinite;
+}
+
+/* Disabled button styling */
+.button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Additional styling for message display */
+.messages p {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.messages p.user {
+  color: #333;
+}
+
     </style>
     <script src="lunaVoice.js"></script>
 </body>
