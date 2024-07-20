@@ -80,7 +80,10 @@ async function uploadAudio(formData) {
     }
 }
 
-function speakText(text) {
+function speakText(text, volume = 1, pitch = 2, rate = 1) {
     const utterance = new SpeechSynthesisUtterance(text);
+    utterance.volume = volume; // 0 to 1
+    utterance.pitch = pitch; // 0 to 2
+    utterance.rate = rate; // 0.1 to 10
     window.speechSynthesis.speak(utterance);
 }
