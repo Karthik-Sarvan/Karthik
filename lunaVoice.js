@@ -1,14 +1,15 @@
 let mediaRecorder;
 let audioChunks = [];
-var voices = speechSynthesis.getVoices();
 
 
 function speakText(text) {
-    text.default = false;
-    text.localservice = true;
-    text.lang = "en-GB";
-    text.voice = voices[3].name;
-    speechSynthesis.speak(text);
+    var voices = speechSynthesis.getVoices();
+    var msg = new SpeechSynthesisUtterance(text);
+    msg.default = false;
+    msg.localservice = true;
+    msg.lang = "en-GB";
+    msg.voice = voices[3].name;
+    speechSynthesis.speak(msg);
 }
 
 async function startRecording() {
