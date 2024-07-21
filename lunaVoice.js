@@ -94,6 +94,7 @@ let song_image = 'https://c.saavncdn.com/601/Pushpa-Pushpa-From-Pushpa-2-The-Rul
                         
                     } else {
                         console.log("No songs found or API returned no results.");
+                        speakText("No songs found");
                     }
                 } else {
                     console.error("API Error:", response.statusText);
@@ -115,10 +116,11 @@ function removeKeywords(text, keywords) {
 }
 
 function stopSong() {
-    if (audioElement) {
-        audioElement.pause();
-        audioElement.currentTime = 0;  // Reset playback position
-    }
+    const videoElement = document.getElementById('myVideo');
+    videoElement.src = "";
+    videoElement.load();
+    const video_display = document.getElementById('myVideodiv');
+    video_display.style.display = 'none';
 }
 async function uploadAudio(formData) {
     try {
