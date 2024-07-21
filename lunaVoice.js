@@ -8,7 +8,6 @@ function speakText(text) {
     msg.default = false;
     msg.localservice = true;
     msg.lang = "en-GB";
-    msg.voice = voices[3].name;
     speechSynthesis.speak(msg);
 }
 
@@ -120,7 +119,7 @@ async function uploadAudio(formData) {
 
         const result = await response.json();
         const responseText = result.response;
-        speakText(responseText);
+        // speakText(responseText);
         const keywords = ["song", "Song", "Playing", "playing"];
         // Display the response
         const messageElement = document.createElement('p');
