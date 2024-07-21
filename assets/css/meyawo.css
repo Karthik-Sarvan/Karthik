@@ -12292,9 +12292,9 @@ sheetdb-form{
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #393812;
+  background: #39381206;
   -webkit-border-radius: 1ex;
-  -webkit-box-shadow: 0px 1px 2px #626c9f;
+  -webkit-box-shadow: 0px 1px 2px #626c9f1d;
 }
 
 ::-webkit-scrollbar-corner {

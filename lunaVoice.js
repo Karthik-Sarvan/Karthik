@@ -12,6 +12,7 @@ function speakText(text) {
 }
 
 async function startRecording() {
+    // audioElement.play();
     stopSong();
     document.querySelector(".start").style.display = 'none'
     document.querySelector(".stop").style.display = 'flex';
@@ -56,30 +57,51 @@ function stopRecording() {
 
 }
 
-let currentAudio = null;
+let audioElement;
+let song_image = 'https://c.saavncdn.com/601/Pushpa-Pushpa-From-Pushpa-2-The-Rule-Telugu-Telugu-2024-20240501161044-500x500.jpg';
 
-async function containsSongAndCallAPI(str) {
-    const apiUrl = `https://luna-music-ai.vercel.app/api/search/songs?query=${str}`;
+        async function containsSongAndCallAPI(str) {
+            const apiUrl = `https://luna-music-ai.vercel.app/api/search/songs?query=${str}`;
 
-    try {
-        const response = await fetch(apiUrl);
-        if (response.ok) {
-            const data = await response.json();
-            if (data.success && data.data.results.length > 0) {
-                // Extract the URL of the song with the desired quality (320kbps)
-                const song = data.data.results[0];
-                const songUrl = song.downloadUrl.find(urlObj => urlObj.quality === '320kbps').url;
-                playSong(songUrl);
-            } else {
-                console.log("No songs found or API returned no results.");
+            try {
+                const response = await fetch(apiUrl);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success && data.data.results.length > 0) {
+                        // Extract the URL of the song with the desired quality (320kbps)
+                        const song = data.data.results[0];
+                        song_image = song.image.find(urlObj => urlObj.quality === '500x500').url;
+                        const songUrl = song.downloadUrl.find(urlObj => urlObj.quality === '320kbps').url;
+                        
+                        // Create an audio element and append it to the body
+                        // if (audioElement) {
+                        //     // Stop the current audio if one is playing
+                        //     audioElement.pause();
+                        //     audioElement.remove();
+                        // }
+                        // audioElement = document.createElement('audio');
+                        // audioElement.controls = true;
+                        // audioElement.src = songUrl;
+                        // document.body.appendChild(audioElement);
+                        // audioElement.play();  
+                        const variable_image = document.getElementById('song_image');
+                        variable_image.src = song_image;
+                        const videoElement = document.getElementById('myVideo');
+                        videoElement.src = songUrl;
+                        videoElement.load();
+                        const video_display = document.getElementById('myVideodiv');
+                        video_display.style.display = 'flex';
+                        
+                    } else {
+                        console.log("No songs found or API returned no results.");
+                    }
+                } else {
+                    console.error("API Error:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Fetch Error:", error);
             }
-        } else {
-            console.error("API Error:", response.statusText);
         }
-    } catch (error) {
-        console.error("Fetch Error:", error);
-    }
-}
 
 function containsKeywords(text, keywords) {
     return keywords.some(keyword => text.includes(keyword));
@@ -91,19 +113,11 @@ function removeKeywords(text, keywords) {
     });
     return text;
 }
-function playSong(url) {
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;  // Reset the audio to the start
-    }
-    currentAudio = new Audio(url);
-    currentAudio.play();
-}
+
 function stopSong() {
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;  // Reset the audio to the start
-        currentAudio = null;
+    if (audioElement) {
+        audioElement.pause();
+        audioElement.currentTime = 0;  // Reset playback position
     }
 }
 async function uploadAudio(formData) {

@@ -23,16 +23,28 @@
                 <!-- <label>Start Recording</label> -->
             </div>
             <div class="stop">
-                <img class="record-button" class="stop-button" type="button" onclick="stopRecording()" disabled src="assets/imgs/voice.svg" ">
+                <img class="record-button" class="stop-button" type="button" onclick="stopRecording()" disabled src="assets/imgs/voice.svg" >
                 <!-- <label>stop Recording</label> -->
             </div>
         </div>
-    </div>
+        <div id="myVideodiv">
+            <img id="song_image" src="https://c.saavncdn.com/601/Pushpa-Pushpa-From-Pushpa-2-The-Rule-Telugu-Telugu-2024-20240501161044-500x500.jpg" alt="">
+            <video src="" id="myVideo" autoplay controls></video>
+        </div>
+      </div>
     <style>
-      .messages{
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
+      #myVideodiv{
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 13%;
+        height: fit-content;
+        gap: 5%;
+      }
+      #myVideo{
+        width: 70%;
+        height: 50px;
       }
       .stop{
         display: none;
@@ -44,6 +56,10 @@
         justify-content: center;
         align-items: center;
         border: 2px solid red;
+      }
+      #song_image{
+        width: 20%;
+        border-radius: 50%;
       }
         .container-ai{
             position: absolute;
@@ -74,22 +90,14 @@
             margin-right: 2px;
         }
         #response {
-    width: 100%;
-    text-align: center;
+    width: 70%;
     font-size: 20px;
     color: rgb(31, 30, 30);
+    text-align: center;
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    height: 100%;
+    height: 50vh;
     overflow-y: scroll;
     position: absolute;
-    padding-top: 10%;
-}
-
-/* Media query for mobile devices */
-@media (max-width: 768px) {
-    #response {
-        padding-top: 50%;
-    }
 }
 
         /* Define keyframes for pulsating animation */
@@ -133,6 +141,7 @@
 .messages p.user {
   color: #333;
 }
+
 
     </style>
 
