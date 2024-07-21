@@ -1,7 +1,14 @@
 let mediaRecorder;
 let audioChunks = [];
+var voices = speechSynthesis.getVoices();
+msg.default=false; 
+msg.localservice=true;
+msg.lang = "en-GB";
+msg.voice = voices[3].name;
 
-
+function speakText(text) {
+    speechSynthesis.speak(text);
+}
 
 async function startRecording() {
     stopSong();
@@ -111,16 +118,16 @@ async function uploadAudio(formData) {
 
         const result = await response.json();
         const responseText = result.response;
+        speakText(responseText);
         const keywords = ["song", "Song", "Playing", "playing"];
         // Display the response
         const messageElement = document.createElement('p');
         messageElement.className = 'user';
         messageElement.innerText = responseText;
-        document.querySelector('.messages').appendChild(messageElement);
+        document.querySelector('.messages').innerText = responseText;
 
         // Speak out the response
         speakText(responseText);
-        
         if (containsKeywords(responseText, keywords)) {
             console.log(responseText);
             const cleanedResponseText = removeKeywords(responseText, keywords);
@@ -137,10 +144,4 @@ async function uploadAudio(formData) {
     }
 }
 
-function speakText(text, volume = 1, pitch = 2, rate = 1) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.volume = volume; // 0 to 1
-    utterance.pitch = pitch; // 0 to 2
-    utterance.rate = rate; // 0.1 to 10
-    window.speechSynthesis.speak(utterance);
-}
+
