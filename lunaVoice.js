@@ -1,12 +1,13 @@
 let mediaRecorder;
 let audioChunks = [];
 var voices = speechSynthesis.getVoices();
-msg.default=false; 
-msg.localservice=true;
-msg.lang = "en-GB";
-msg.voice = voices[3].name;
+
 
 function speakText(text) {
+    text.default = false;
+    text.localservice = true;
+    text.lang = "en-GB";
+    text.voice = voices[3].name;
     speechSynthesis.speak(text);
 }
 
@@ -33,12 +34,12 @@ async function startRecording() {
 
     mediaRecorder.start();
 
-    
+
     recordButton.disabled = true;
     recordButton.classList.add('active');
     stopButton.disabled = false;
-    
-   
+
+
 }
 
 function stopRecording() {
@@ -52,7 +53,7 @@ function stopRecording() {
     recordButton.disabled = false;
     recordButton.classList.remove('active');
     stopButton.disabled = true;
-    
+
 }
 
 let currentAudio = null;
