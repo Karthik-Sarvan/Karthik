@@ -12311,3 +12311,12 @@ sheetdb-form{
   width: 40px;
   margin-left: 5px;
 }
+
+/* spotmies logo */
+
+.Company-logo{
+    width: 50%;
+    height: auto;
+    background-color: #2b2b2e;
+    padding: 10px;
+}
