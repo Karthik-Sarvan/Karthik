@@ -31,6 +31,7 @@ document.getElementById('questionForm').addEventListener('submit', async functio
         const responseElement = document.getElementById('response');
         responseElement.textContent = answer;
         responseElement.style.display = 'block';
+        replaceBackticksWithPre();
     } catch (error) {
         console.error('Error:', error);
         const responseElement = document.getElementById('response');
@@ -38,4 +39,18 @@ document.getElementById('questionForm').addEventListener('submit', async functio
         responseElement.style.display = 'block';
     }
 });
+
+function replaceBackticksWithPre() {
+    // Get the section element
+    var section = document.getElementById('response');
+
+    // Get the content of the section
+    var content = section.innerHTML;
+
+    // Replace triple backticks with <pre> tags
+    content = content.replace(/```([^`]+)```/g, '<pre>$1</pre>');
+
+    // Set the updated content back to the section
+    section.innerHTML = content;
+}
 
